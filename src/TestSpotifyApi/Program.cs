@@ -26,15 +26,23 @@ namespace TestSpotifyApi
             var track = await spotify.Player.GetRecentlyPlayed(playerReq);
 
             //A collection of music tracks with their name, artists and with which album it came out
-            var erg = from a in track.Items
+            /*var erg = from a in track.Items
                       select new {artist= from b in a.Track.Artists
-                                          select b.Name
-                      , trackName = a.Track.Name, album = a.Track.Album.Name };
-
-           
-
+                                          select b.Name ,
+                       trackName = a.Track.Name, album = a.Track.Album.Name };
+              
+   
             erg.ToList().ForEach(f=>Console.WriteLine("Artists: " + f.artist.First() + ", Song: " + f.trackName + ", Album: " + f.album));
+            */
 
+            await foreach (var item in spotify.Paginate(track))
+            {
+                Console.WriteLine("Track: " + item.Track.Name + ", ");
+                Console.WriteLine("Name: " + item.Track.Album.Name + ", ");
+                item.Track.Artists.ToList().ForEach(m => Console.WriteLine("Artist:" + m.Name));
+                Console.WriteLine("----------------------------------------------------------");
+
+            }
         }
     }
 }
