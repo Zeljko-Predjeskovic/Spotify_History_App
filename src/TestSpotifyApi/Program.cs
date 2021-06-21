@@ -12,11 +12,12 @@ namespace TestSpotifyApi
             var config = SpotifyClientConfig.CreateDefault();
 
             
-            var request = new ClientCredentialsRequest("ClientId", "ClentSecret");
+            var request = new ClientCredentialsRequest(Environment.GetEnvironmentVariable("ClientId"), Environment.GetEnvironmentVariable("ClientSecret"));
             var response = await new OAuthClient(config).RequestToken(request);
 
             //new client with auth token
-            var spotify = new SpotifyClient(config.WithToken(response.AccessToken = "Authorization Token"));
+            var spotify = new SpotifyClient(config.WithToken(response.AccessToken = "BQBqEJ06Bfur8TmJFREWMgTQCEy1hFQlty72ebnHx04-C7E9wtb" +
+                "CMvoRh_CJ_225T6FKM5EPBC8Ldm-eiZmvagZ79DjHdlln3PD9ttrThyUFdL2X_Y7qmCRr6DOKM3SxxmwBH65XZGNCCSu7jQ"));
 
             //For the GetRecentPlayerId
             //We want the last 4 played tracks
