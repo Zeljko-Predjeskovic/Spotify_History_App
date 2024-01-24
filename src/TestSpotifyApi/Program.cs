@@ -16,8 +16,7 @@ namespace TestSpotifyApi
             var response = await new OAuthClient(config).RequestToken(request);
 
             //new client with auth token
-            var spotify = new SpotifyClient(config.WithToken(response.AccessToken = "BQBqEJ06Bfur8TmJFREWMgTQCEy1hFQlty72ebnHx04-C7E9wtb" +
-                "CMvoRh_CJ_225T6FKM5EPBC8Ldm-eiZmvagZ79DjHdlln3PD9ttrThyUFdL2X_Y7qmCRr6DOKM3SxxmwBH65XZGNCCSu7jQ"));
+            var spotify = new SpotifyClient(config.WithToken(response.AccessToken = "--access token--"));
 
             //For the GetRecentPlayerId
             //We want the last 4 played tracks
